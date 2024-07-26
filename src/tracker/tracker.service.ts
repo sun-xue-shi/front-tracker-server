@@ -1,26 +1,21 @@
 import { Injectable } from '@nestjs/common';
-import { CreateTrackerDto } from './dto/create-tracker.dto';
-import { UpdateTrackerDto } from './dto/update-tracker.dto';
+import { Model } from 'mongoose';
+import { InjectModel } from '@nestjs/mongoose';
+import { Performance } from './entities/performance.entity';
+import { UserAction } from './entities/userAction.entity';
+import { Custom } from './entities/custom.entity';
 
 @Injectable()
 export class TrackerService {
-  create(createTrackerDto: CreateTrackerDto) {
-    return 'This action adds a new tracker';
-  }
+  @InjectModel(Performance.name)
+  private PerformanceModel: Model<Performance>;
 
-  findAll() {
-    return `This action returns all tracker`;
-  }
+  @InjectModel(UserAction.name)
+  private UserActionModel: Model<UserAction>;
 
-  findOne(id: number) {
-    return `This action returns a #${id} tracker`;
-  }
+  @InjectModel(Custom.name)
+  private CustomModel: Model<Custom>;
 
-  update(id: number, updateTrackerDto: UpdateTrackerDto) {
-    return `This action updates a #${id} tracker`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} tracker`;
-  }
+  @InjectModel(Error.name)
+  private ErrorModel: Model<Error>;
 }
