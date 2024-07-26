@@ -31,7 +31,21 @@ export class Performance {
     rating: RateType;
   };
 
-  @Prop()
+  @Prop(
+    raw({
+      DNS: raw({ start: Number, end: Number, value: Number }),
+      SSL: raw({ start: Number, end: Number, value: Number }),
+      TCP: raw({ start: Number, end: Number, value: Number }),
+      TTFB: raw({ start: Number, end: Number, value: Number }),
+      Trans: raw({ start: Number, end: Number, value: Number }),
+      FP: raw({ start: Number, end: Number, value: Number }),
+      DomParse: raw({ start: Number, end: Number, value: Number }),
+      TTI: raw({ start: Number, end: Number, value: Number }),
+      DomReady: raw({ start: Number, end: Number, value: Number }),
+      Res: raw({ start: Number, end: Number, value: Number }),
+      Load: raw({ start: Number, end: Number, value: Number }),
+    }),
+  )
   navigationTiming: {
     DNS: DataModel;
     SSL: DataModel;

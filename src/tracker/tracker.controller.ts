@@ -1,17 +1,21 @@
-import {
-  Controller,
-  Get,
-  Post,
-  Body,
-  Patch,
-  Param,
-  Delete,
-} from '@nestjs/common';
+import { Controller, Post, Req } from '@nestjs/common';
 import { TrackerService } from './tracker.service';
-import { CreateTrackerDto } from './dto/create-tracker.dto';
-import { UpdateTrackerDto } from './dto/update-tracker.dto';
+import { Request } from 'express';
 
 @Controller('tracker')
 export class TrackerController {
   constructor(private readonly trackerService: TrackerService) {}
+
+  @Post()
+  trackedDataReport(@Req() request: Request) {
+    const buffers = [];
+    request.on('data', (chunk) => {
+      buffers.push(chunk);
+    });
+    request.on('end', () => {
+      const bufferData = buffers.concat(buffers);
+      const data = JSON.parse(bufferData.toString());
+      this.trackerService.saveTrackedData(data);
+    });
+  }
 }

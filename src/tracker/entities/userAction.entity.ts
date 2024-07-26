@@ -2,7 +2,7 @@ import { Prop, Schema, SchemaFactory, raw } from '@nestjs/mongoose';
 
 @Schema()
 export class UserAction {
-  @Prop()
+  @Prop({ type: Object })
   pageInformation: {
     href: string;
     origin: string;
@@ -53,7 +53,7 @@ export class UserAction {
     time: number;
   }>;
 
-  @Prop()
+  @Prop({ type: Object })
   domBehaviorRecord: Record<
     string,
     Array<{

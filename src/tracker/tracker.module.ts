@@ -3,8 +3,8 @@ import { TrackerController } from './tracker.controller';
 import { Module } from '@nestjs/common';
 import { UserAction, UserActionSchema } from './entities/userAction.entity';
 import { MongooseModule } from '@nestjs/mongoose';
-import { PerformanceSchema } from './entities/performance.entity';
-import { ErrorSchema } from './entities/error.entity';
+import { PerformanceSchema, Performance } from './entities/performance.entity';
+import { ErrorSchema, Error } from './entities/error.entity';
 import { Custom, CustomSchema } from './entities/custom.entity';
 
 @Module({
